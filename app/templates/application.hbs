@@ -1,1 +1,32 @@
-{{outlet}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    {{#link-to "index" class="navbar-brand"}}
+      Home
+    {{/link-to}}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          {{#link-to "recipes" class="nav-link"}}
+            Recipes
+          {{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to "categories" class="nav-link"}}
+            Categories
+          {{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to "tags" class="nav-link"}}
+            Tags
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container" style="margin: 20px 0;">
+  {{outlet}}
+</div>

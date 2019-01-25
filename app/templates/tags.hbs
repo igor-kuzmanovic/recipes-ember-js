@@ -1,0 +1,13 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.model as |tagUnit|}}
+      {{tag-listing tag=tagUnit}}
+    {{/each}}
+  </tbody>
+</table>
