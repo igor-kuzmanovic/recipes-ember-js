@@ -1,5 +1,5 @@
 {{yield}}
-<div class="card" style="width: 20vw;">
+<div class="card recipe-card">
   <img src={{this.recipe.imageUrl}} class="card-img-top" alt="...">
   <div class="card-body">
     <h4 class="card-title">{{this.recipe.title}}</h4>
@@ -25,7 +25,7 @@
   <div class="card-footer text-muted">
     {{recipe-date-format this.recipe.date}}
   </div>
-  <div class="card-header">
+  <div class="card-body">
     {{#link-to "recipes" class="btn btn-primary"}}
       Details
     {{/link-to}}
