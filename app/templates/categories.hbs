@@ -6,8 +6,11 @@
     </tr>
   </thead>
   <tbody>
-    {{#each this.model as |categoryUnit|}}
-      {{category-listing category=categoryUnit}}
+    {{#each this.model as |category|}}
+      <th scope="row">{{category.id}}</th>
+      <td>{{category.name}}</td>
+    {{else}}
+      <td>Sorry, no categories available!</td>
     {{/each}}
   </tbody>
 </table>

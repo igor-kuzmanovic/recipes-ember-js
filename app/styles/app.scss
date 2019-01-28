@@ -1,9 +1,20 @@
 @import "ember-bootstrap/bootstrap";
 
 .app-container {
-  margin: 20px 0;
+  margin: 20px auto;
 }
 
-.recipe-card {
-  width: 20vw;
+.recipe-card-deck {
+  margin: 0 auto;
+
+  .recipe-card {
+    margin-bottom: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+
+    .recipe-card-description {
+      height: 6rem;
+      overflow: auto;
+    }
+  }
 }

@@ -6,8 +6,11 @@
     </tr>
   </thead>
   <tbody>
-    {{#each this.model as |tagUnit|}}
-      {{tag-listing tag=tagUnit}}
+    {{#each this.model as |tag|}}
+      <th scope="row">{{tag.id}}</th>
+      <td>{{tag.name}}</td>
+    {{else}}
+      <td>Sorry, no tags available!</td>
     {{/each}}
   </tbody>
 </table>
