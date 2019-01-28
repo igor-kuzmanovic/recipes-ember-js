@@ -7,8 +7,10 @@
   </thead>
   <tbody>
     {{#each this.model as |category|}}
-      <th scope="row">{{category.id}}</th>
-      <td>{{category.name}}</td>
+      <tr>
+        <th scope="row">{{category.id}}</th>
+        <td>{{category.name}}</td>
+      </tr>
     {{else}}
       <td>Sorry, no categories available!</td>
     {{/each}}

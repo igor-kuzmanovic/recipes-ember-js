@@ -7,8 +7,10 @@
   </thead>
   <tbody>
     {{#each this.model as |tag|}}
-      <th scope="row">{{tag.id}}</th>
-      <td>{{tag.name}}</td>
+      <tr>
+        <th scope="row">{{tag.id}}</th>
+        <td>{{tag.name}}</td>
+      </tr>
     {{else}}
       <td>Sorry, no tags available!</td>
     {{/each}}

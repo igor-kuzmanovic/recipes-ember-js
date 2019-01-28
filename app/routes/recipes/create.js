@@ -7,7 +7,7 @@ export default Route.extend({
 
     actions: {
         createRecipe() {
-            //let recipe = this.modelFor(this.routeName);
+
         }
     }
 });

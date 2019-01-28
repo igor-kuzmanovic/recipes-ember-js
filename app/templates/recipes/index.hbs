@@ -1,15 +1,15 @@
 <table class="table table-hover">
   <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Date</th>
-      <th scope="col"></th>
-    </tr>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Description</th>
+    <th scope="col">Date</th>
+    <th scope="col"></th>
+  </tr>
   </thead>
   <tbody>
-    {{#each this.model as |recipe|}}
+  {{#each this.model as |recipe|}}
     <tr>
       <th scope="row">{{recipe.id}}</th>
       <td>{{recipe.title}}</td>
@@ -19,8 +19,8 @@
         <img src={{recipe.imageUrl}} alt="Recipe Image">
       </td>
     </tr>
-    {{else}}
-      <td>Sorry, no recipes available!</td>
-    {{/each}}
+  {{else}}
+    <td>Sorry, no recipes available!</td>
+  {{/each}}
   </tbody>
 </table>
