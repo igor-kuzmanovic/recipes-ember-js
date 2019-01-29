@@ -1,10 +1,10 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    title: DS.attr(),
-    description: DS.attr(),
-    date: DS.attr(),
-    imageUrl: DS.attr(),
+    title: DS.attr('string'),
+    description: DS.attr('string'),
+    date: DS.attr('date'),
+    imageUrl: DS.attr('string'),
     ingredients: DS.hasMany('ingredient'),
     category: DS.belongsTo('category'),
     tags: DS.hasMany('tag'),

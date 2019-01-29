@@ -1,0 +1,27 @@
+{{yield}}
+<table class="table table-hover table-sm text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each ingredients as |ingredient|}}
+      <tr>
+        <th scope="row" class="align-middle">{{ingredient.id}}</th>
+        <td class="align-middle">{{ingredient.name}}</td>
+        <td class="align-middle">
+          <div class="btn-group" role="group">
+            {{#bs-button type="info" outline="true"}}Details{{/bs-button}}
+            {{#bs-button type="primary" outline="true"}}Update{{/bs-button}}
+            {{#bs-button type="danger" outline="true"}}Delete{{/bs-button}}
+          </div>
+        </td>
+      </tr>
+    {{else}}
+      <td>Sorry, no ingredients available!</td>
+    {{/each}}
+  </tbody>
+</table>

@@ -1,0 +1,33 @@
+{{yield}}
+<table class="table table-hover table-sm text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Date</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each recipes as |recipe|}}
+      <tr>
+        <th scope="row" class="align-middle">{{recipe.id}}</th>
+        <td class="align-middle">{{recipe.title}}</td>
+        <td class="align-middle">{{recipe.description}}</td>
+        <td class="align-middle">{{recipe.category.name}}</td>
+        <td class="align-middle">{{recipe-date-format recipe.date}}</td>
+        <td class="align-middle">
+          <div class="btn-group" role="group">
+            {{#bs-button type="info" outline="true"}}Details{{/bs-button}}
+            {{#bs-button type="primary" outline="true"}}Update{{/bs-button}}
+            {{#bs-button type="danger" outline="true"}}Delete{{/bs-button}}
+          </div>
+        </td>
+      </tr>
+    {{else}}
+      <td>Sorry, no recipes available!</td>
+    {{/each}}
+  </tbody>
+</table>
