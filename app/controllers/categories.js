@@ -3,8 +3,8 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
     selectedCategory: null,
-    modalType: '',
     isModalOpen: false,
+    modalType: '',
 
     modalBodyComponent: computed('modalType', function() {
         if (this.get('modalType') === 'Create') {
