@@ -22,6 +22,9 @@ export default Controller.extend({
     actions: {
         openModal(modalType, ingredient) {
             this.set('modalType', modalType);
+            if (this.get('modalType') === 'Create') {
+                ingredient = this.store.createRecord('ingredient');
+            }
             this.set('selectedIngredient', ingredient);
             this.set(`isModalOpen`, true);
         },

@@ -1,5 +1,7 @@
 {{yield}}
 <div class="text-center">
+  <img src={{recipe.imageUrl}} class="img-thumbnail" alt="Recipe Image">
+  <hr>
   <h4>Title</h4>
   <p>{{recipe.title}}</p>
   <h4>Description</h4>
@@ -20,6 +22,4 @@
   </ul>
   <h4>Date</h4>
   <p>{{recipe-date-format recipe.date}}</p>
-  <hr>
-  <img src={{recipe.imageUrl}} class="img-thumbnail" alt="Recipe Image">
 </div>
