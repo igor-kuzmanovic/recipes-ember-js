@@ -8,17 +8,19 @@
   </thead>
   <tbody>
   {{#each model as |category|}}
-    <tr>
-      <th scope="row" class="align-middle">{{category.id}}</th>
-      <td class="align-middle">{{category.name}}</td>
-      <td class="align-middle">
-        <div class="btn-group" role="group">
-          {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
-          {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
-          {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
-        </div>
-      </td>
-    </tr>
+    {{#if category.id}}
+      <tr>
+        <th scope="row" class="align-middle">{{category.id}}</th>
+        <td class="align-middle">{{category.name}}</td>
+        <td class="align-middle">
+          <div class="btn-group" role="group">
+            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
+            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
+            {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
+          </div>
+        </td>
+      </tr>
+    {{/if}}
   {{else}}
     <td>Sorry, no categories available!</td>
   {{/each}}

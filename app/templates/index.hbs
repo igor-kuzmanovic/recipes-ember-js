@@ -6,18 +6,20 @@
     {{#bs-button type="primary" block="true" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
   </div>
   {{#each model.recipes as |recipe|}}
-    <div class="card recipe-card col-sm-4">
-      <img src={{recipe.imageUrl}} class="card-img-top" alt="Recipe Image">
-      <div class="card-header">
-        <h4 class="card-title">{{recipe.title}}</h4>
-        <h6 class="card-subtitle mb-2 text-muted">{{recipe.category.name}}</h6>
+    {{#if recipe.id}}
+      <div class="card recipe-card col-sm-4">
+        <img src={{recipe.imageUrl}} class="card-img-top" alt="Recipe Image">
+        <div class="card-header">
+          <h4 class="card-title">{{recipe.title}}</h4>
+          <h6 class="card-subtitle mb-2 text-muted">{{recipe.category.name}}</h6>
+        </div>
+        <div class="card-body">
+          <p class="card-text recipe-card-description text-center">{{recipe.description}}</p>
+          <h6 class="card-text text-muted text-right">{{recipe-date-format recipe.date}}</h6>
+        </div>
+        {{#bs-button type="info" block="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
       </div>
-      <div class="card-body">
-        <p class="card-text recipe-card-description text-center">{{recipe.description}}</p>
-        <h6 class="card-text text-muted text-right">{{recipe-date-format recipe.date}}</h6>
-      </div>
-      {{#bs-button type="info" block="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
-    </div>
+    {{/if}}
   {{else}}
     <h1>Sorry, no recipes available!</h1>
   {{/each}}

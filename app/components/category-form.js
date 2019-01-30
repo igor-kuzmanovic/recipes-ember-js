@@ -4,7 +4,9 @@ export default Component.extend({
     actions: {
         submitForm() {
             let category = this.get('category');
-            alert(category.name);
+            category.save();
+
+            event.preventDefault();
         }
     }
 });

@@ -8,17 +8,19 @@
   </thead>
   <tbody>
   {{#each model as |tag|}}
-    <tr>
-      <th scope="row" class="align-middle">{{tag.id}}</th>
-      <td class="align-middle">{{tag.name}}</td>
-      <td class="align-middle">
-        <div class="btn-group" role="group">
-          {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" tag)}}Details{{/bs-button}}
-          {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" tag)}}Update{{/bs-button}}
-          {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" tag)}}Delete{{/bs-button}}
-        </div>
-      </td>
-    </tr>
+    {{#if tag.id}}
+      <tr>
+        <th scope="row" class="align-middle">{{tag.id}}</th>
+        <td class="align-middle">{{tag.name}}</td>
+        <td class="align-middle">
+          <div class="btn-group" role="group">
+            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" tag)}}Details{{/bs-button}}
+            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" tag)}}Update{{/bs-button}}
+            {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" tag)}}Delete{{/bs-button}}
+          </div>
+        </td>
+      </tr>
+    {{/if}}
   {{else}}
     <td>Sorry, no tags available!</td>
   {{/each}}
