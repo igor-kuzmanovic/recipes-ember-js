@@ -35,5 +35,5 @@
 {{#bs-button type="primary" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
 
 {{#table-modal modalType=modalType objectType="Recipe" isModalOpen=isModalOpen}}
-  {{component modalBodyType recipe=selectedRecipe}}
+  {{component modalBodyType recipe=selectedRecipe ingredients=ingredients categories=categories tags=tags}}
 {{/table-modal}}

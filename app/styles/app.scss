@@ -1,4 +1,6 @@
 @import "ember-bootstrap/bootstrap";
+@import "ember-power-select/themes/bootstrap";
+@import "ember-power-select";
 
 .app-container {
   margin: 50px auto;
@@ -17,4 +19,8 @@
       overflow: auto;
     }
   }
+}
+
+.in-modal-dropdown {
+  z-index: 1051;
 }

@@ -6,7 +6,7 @@
     {{yield}}
   {{/modal.body}}
   {{#if hasFooter}}
-    {{#modal.footer class="justify-content-between" as |footer|}}
+    {{#modal.footer class="justify-content-between"}}
       {{#bs-button onClick=(action "closeModal") type="danger"}}Cancel{{/bs-button}}
       {{#bs-button onClick=(action "submitModal") type="success"}}Confirm{{/bs-button}}
     {{/modal.footer}}

@@ -15,19 +15,25 @@
   <div class="form-group row">
     <label for="ingredients" class="col-3 col-form-label">Ingredients</label>
     <div class="col-9">
-
+      {{#power-select-multiple selected=recipe.ingredients options=ingredients onchange=(action (mut recipe.ingredients)) dropdownClass="in-modal-dropdown" placeholder="Select the ingredients" as |ingredient|}}
+        {{ingredient.name}}
+      {{/power-select-multiple}}
     </div>
   </div>
   <div class="form-group row">
     <label for="category" class="col-3 col-form-label">Category</label>
     <div class="col-9">
-
+      {{#power-select selected=recipe.category options=categories onchange=(action (mut recipe.category)) dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
+        {{category.name}}
+      {{/power-select}}
     </div>
   </div>
   <div class="form-group row">
     <label for="tags" class="col-3 col-form-label">Tags</label>
     <div class="col-9">
-
+      {{#power-select-multiple selected=recipe.tags options=tags onchange=(action (mut recipe.tags)) dropdownClass="in-modal-dropdown" placeholder="Select the tags" as |tag|}}
+        {{tag.name}}
+      {{/power-select-multiple}}
     </div>
   </div>
   <div class="form-group row justify-content-center">
