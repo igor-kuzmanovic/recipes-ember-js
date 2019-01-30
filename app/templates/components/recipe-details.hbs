@@ -5,9 +5,7 @@
   <br>
   <h4>Description</h4>
   <p>{{recipe.description}}</p>
-  <br>
-  <h4>Date</h4>
-  <p>{{recipe-date-format recipe.date}}</p>
+
   <br>
   <h4>Ingredients</h4>
   {{#each recipe.ingredients as |ingredient|}}
@@ -25,4 +23,9 @@
   {{else}}
     <p>This recipe doesn't contain any tags!</p>
   {{/each}}
+  <br>
+  <h4>Date</h4>
+  <p>{{recipe-date-format recipe.date}}</p>
+  <hr>
+  <img src={{recipe.imageUrl}} class="img-thumbnail" alt="Recipe Image">
 </div>
