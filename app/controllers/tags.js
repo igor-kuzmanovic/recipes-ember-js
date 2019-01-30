@@ -14,7 +14,7 @@ export default Controller.extend({
         } else if (this.get('modalType') === 'Update') {
             return 'tag-form';
         } else if (this.get('modalType') === 'Delete') {
-            return 'tag-delete-confirmation';
+            return 'tag-delete';
         }
         return '';
     }),

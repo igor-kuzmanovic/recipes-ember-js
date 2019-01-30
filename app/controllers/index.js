@@ -14,7 +14,7 @@ export default Controller.extend({
         } else if (this.get('modalType') === 'Update') {
             return 'recipe-form';
         } else if (this.get('modalType') === 'Delete') {
-            return 'recipe-delete-confirmation';
+            return 'recipe-delete';
         }
         return '';
     }),

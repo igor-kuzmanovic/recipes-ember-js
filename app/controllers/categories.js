@@ -14,7 +14,7 @@ export default Controller.extend({
         } else if (this.get('modalType') === 'Update') {
             return 'category-form';
         } else if (this.get('modalType') === 'Delete') {
-            return 'category-delete-confirmation';
+            return 'category-delete';
         }
         return '';
     }),
