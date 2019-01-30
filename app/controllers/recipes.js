@@ -2,31 +2,31 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-    selectedCategory: null,
+    selectedRecipe: null,
     isModalOpen: false,
     modalType: '',
 
     modalBodyComponent: computed('modalType', function() {
         if (this.get('modalType') === 'Create') {
-            return 'category-form';
+            return 'recipe-form';
         } else if (this.get('modalType') === 'Details') {
-            return 'category-details';
+            return 'recipe-details';
         } else if (this.get('modalType') === 'Update') {
-            return 'category-form';
+            return 'recipe-form';
         } else if (this.get('modalType') === 'Delete') {
-            return 'category-delete-confirmation';
+            return 'recipe-delete-confirmation';
         }
         return '';
     }),
 
-    actions: {
-        openModal(modalType, category) {
+        actions: {
+        openModal(modalType, recipe) {
             this.set('modalType', modalType);
-            this.set('selectedCategory', category);
+            this.set('selectedRecipe', recipe);
             this.set(`isModalOpen`, true);
         },
         closedModal() {
-            this.set('selectedCategory', null);
+            this.set('selectedRecipe', null);
         }
     }
 });

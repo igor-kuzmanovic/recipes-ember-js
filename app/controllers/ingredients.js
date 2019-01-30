@@ -1,12 +1,12 @@
-import Component from '@ember/component';
+import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
-export default Component.extend({
+export default Controller.extend({
     selectedIngredient: null,
     isModalOpen: false,
     modalType: '',
 
-    modalBodyType: computed('modalType', function() {
+    modalBodyComponent: computed('modalType', function() {
         if (this.get('modalType') === 'Create') {
             return 'ingredient-form';
         } else if (this.get('modalType') === 'Details') {
@@ -24,9 +24,6 @@ export default Component.extend({
             this.set('modalType', modalType);
             this.set('selectedIngredient', ingredient);
             this.set(`isModalOpen`, true);
-        },
-        closeModal() {
-            this.set(`isModalOpen`, false);
         },
         closedModal() {
             this.set('selectedIngredient', null);

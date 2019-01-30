@@ -2,28 +2,22 @@
 <div class="text-center">
   <h4>Title</h4>
   <p>{{recipe.title}}</p>
-  <br>
   <h4>Description</h4>
   <p>{{recipe.description}}</p>
-
-  <br>
   <h4>Ingredients</h4>
-  {{#each recipe.ingredients as |ingredient|}}
-    <p>{{ingredient.name}}</p>
-  {{else}}
-    <p>This recipe doesn't contain any ingredients!</p>
-  {{/each}}
-  <br>
+  <ul class="list-inline">
+    {{#each recipe.ingredients as |ingredient|}}
+      <li class="list-inline-item">{{ingredient.name}}</li>
+    {{/each}}
+  </ul>
   <h4>Category</h4>
   <p>{{recipe.category.name}}</p>
-  <br>
   <h4>Tags</h4>
-  {{#each recipe.tags as |tag|}}
-    <p>{{tag.name}}</p>
-  {{else}}
-    <p>This recipe doesn't contain any tags!</p>
-  {{/each}}
-  <br>
+  <ul class="list-inline">
+    {{#each recipe.tags as |tag|}}
+      <li class="list-inline-item">{{tag.name}}</li>
+    {{/each}}
+  </ul>
   <h4>Date</h4>
   <p>{{recipe-date-format recipe.date}}</p>
   <hr>

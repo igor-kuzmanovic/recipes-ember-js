@@ -1,0 +1,14 @@
+{{#bs-modal open=isOpen onHide=(action "closeSelf") onHidden=(action "closedSelf") onSubmit=(action "submitSelf") as |modal|}}
+  {{#modal.header}}
+    <h4 class="modal-title">{{title}}</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{yield}}
+  {{/modal.body}}
+  {{#if hasFooter}}
+    {{#modal.footer class="justify-content-between"}}
+      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
+      {{#bs-button onClick=(action modal.submit) type="success"}}Confirm{{/bs-button}}
+    {{/modal.footer}}
+  {{/if}}
+{{/bs-modal}}

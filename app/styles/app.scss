@@ -2,9 +2,13 @@
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
 
+// Global container
+
 .app-container {
   margin: 50px auto;
 }
+
+// Recipe card-deck
 
 .recipe-card-deck {
   margin: 0 auto;
@@ -21,6 +25,20 @@
   }
 }
 
+// Raised the z-index of the power-select components because bootstrap modals are @1500
+
 .in-modal-dropdown {
   z-index: 1051;
+}
+
+// Custom inline list with commas after all it's elements (except the last one)
+
+.list-inline {
+  .list-inline-item {
+    margin-right: 0;
+
+    &:not(:last-child):after {
+      content: ', '
+    }
+  }
 }

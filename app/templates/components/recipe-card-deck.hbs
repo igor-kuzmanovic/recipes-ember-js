@@ -1,9 +1,0 @@
-{{yield}}
-<div class="card-deck recipe-card-deck row">
-  {{recipe-card-new class="card recipe-card col-sm-4"}}
-  {{#each recipes as |recipeUnit|}}
-    {{recipe-card recipe=recipeUnit class="card recipe-card col-sm-4"}}
-  {{else}}
-    <h1>Sorry, no recipes available!</h1>
-  {{/each}}
-</div>
