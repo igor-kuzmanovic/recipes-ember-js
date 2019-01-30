@@ -15,7 +15,7 @@
         <td class="align-middle">
           <div class="btn-group" role="group">
             {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
-            {{#bs-button type="primary" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
+            {{#bs-button type="warning" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
             {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
           </div>
         </td>
@@ -25,42 +25,9 @@
     {{/each}}
   </tbody>
 </table>
+<hr>
+{{#bs-button type="primary" onClick=(action "openModal" "Create" category)}}Create{{/bs-button}}
 
-{{#bs-modal open=isDetailsModalOpen onHide=(action "closeModal" "Details") onHidden=(action "closedModal") onSubmit=(action "submitCategory") as |modal|}}
-  {{#modal.header}}
-    <h4 class="modal-title">Category Details</h4>
-  {{/modal.header}}
-  {{#modal.body}}
-    {{category-details category=selectedCategory}}
-  {{/modal.body}}
-  {{#modal.footer as |footer|}}
-    {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-    {{#bs-button onClick=(action modal.submit) type="success"}}Submit{{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
-
-{{#bs-modal open=isUpdateModalOpen onHide=(action "closeModal" "Update") onHidden=(action "closedModal") onSubmit=(action "updateCategory") as |modal|}}
-  {{#modal.header}}
-    <h4 class="modal-title">Update Category</h4>
-  {{/modal.header}}
-  {{#modal.body}}
-    {{category-form category=selectedCategory}}
-  {{/modal.body}}
-  {{#modal.footer as |footer|}}
-    {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-    {{#bs-button onClick=(action modal.submit) type="success"}}Save{{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
-
-{{#bs-modal open=isDeleteModalOpen onHide=(action "closeModal" "Delete") onHidden=(action "closedModal") onSubmit=(action "deleteCategory") as |modal|}}
-  {{#modal.header}}
-    <h4 class="modal-title">Delete Category</h4>
-  {{/modal.header}}
-  {{#modal.body}}
-    <p>Are you sure you want to delete {{selectedCategory.name}} category?</p>
-  {{/modal.body}}
-  {{#modal.footer as |footer|}}
-    {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-    {{#bs-button onClick=(action modal.submit) type="success"}}Confirm{{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+{{#table-modal modalType=modalType objectType="Category" isModalOpen=isModalOpen}}
+  {{component modalBodyType category=selectedCategory}}
+{{/table-modal}}

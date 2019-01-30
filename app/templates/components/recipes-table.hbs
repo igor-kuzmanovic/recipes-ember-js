@@ -20,9 +20,9 @@
         <td class="align-middle">{{recipe-date-format recipe.date}}</td>
         <td class="align-middle">
           <div class="btn-group" role="group">
-            {{#bs-button type="info" outline="true"}}Details{{/bs-button}}
-            {{#bs-button type="primary" outline="true"}}Update{{/bs-button}}
-            {{#bs-button type="danger" outline="true"}}Delete{{/bs-button}}
+            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
+            {{#bs-button type="warning" outline="true" onClick=(action "openModal" "Update" recipe)}}Update{{/bs-button}}
+            {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" recipe)}}Delete{{/bs-button}}
           </div>
         </td>
       </tr>
@@ -31,3 +31,9 @@
     {{/each}}
   </tbody>
 </table>
+<hr>
+{{#bs-button type="primary" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
+
+{{#table-modal modalType=modalType objectType="Recipe" isModalOpen=isModalOpen}}
+  {{component modalBodyType recipe=selectedRecipe}}
+{{/table-modal}}
