@@ -1,9 +1,10 @@
+{{#bs-button type="primary" class="mb-3" onClick=(action "openModal" "Create" category)}}Create{{/bs-button}}
 <table class="table table-hover table-sm">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col" class="table-col-fixed">#</th>
       <th scope="col">Name</th>
-      <th scope="col"></th>
+      <th scope="col" class="table-col-fixed"></th>
     </tr>
   </thead>
   <tbody>
@@ -24,12 +25,10 @@
       {{/unless}}
     {{/if}}
   {{else}}
-    <td>Sorry, no categories available!</td>
+    <td colspan="3">Sorry, no categories available!</td>
   {{/each}}
   </tbody>
 </table>
-<hr>
-{{#bs-button type="primary" onClick=(action "openModal" "Create" category)}}Create{{/bs-button}}
 
 {{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen}}
   {{component modalBodyComponent onSubmit=(action onSubmitAction) category=selectedCategory}}

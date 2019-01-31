@@ -1,6 +1,5 @@
-<form {{action "submitForm" on="submit"}}>
-  <p>Are you sure you want to delete the {{category.title}} recipe?</p>
-  <div class="form-group row justify-content-center">
-    {{input type="submit" class="btn btn-primary" value="Submit"}}
-  </div>
-</form>
+{{yield}}
+<div class="text-center">
+  <h4>Name</h4>
+  <p>{{category.name}}</p>
+</div>

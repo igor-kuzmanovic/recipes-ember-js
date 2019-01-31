@@ -1,12 +1,13 @@
+{{#bs-button type="primary" class="mb-3" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
 <table class="table table-hover table-sm">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col" class="table-col-fixed">#</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Category</th>
       <th scope="col">Date</th>
-      <th scope="col"></th>
+      <th scope="col" class="table-col-fixed"></th>
     </tr>
   </thead>
   <tbody>
@@ -30,12 +31,10 @@
         {{/unless}}
       {{/if}}
     {{else}}
-      <td>Sorry, no recipes available!</td>
+      <td colspan="6">Sorry, no recipes available!</td>
     {{/each}}
   </tbody>
 </table>
-<hr>
-{{#bs-button type="primary" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
 
 {{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen}}
   {{component modalBodyComponent onSubmit=(action onSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}

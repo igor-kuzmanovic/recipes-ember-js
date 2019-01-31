@@ -51,7 +51,7 @@ export default Controller.extend({
         saveRecipe() {
             if (this.get('selectedRecipe')) {
                 let recipe = this.get('selectedRecipe');
-                recipe.set('imageUrl', 'http://localhost:8000/images/1a2330c39cdd158d9424a75c07d1ce73.jpeg');
+                recipe.set('imageUrl', 'http://localhost:8000/images/default.jpeg');
                 recipe.save();
 
                 this.send('closeModal');
