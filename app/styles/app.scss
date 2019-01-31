@@ -1,6 +1,7 @@
 @import "ember-bootstrap/bootstrap";
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
+@import "ember-power-calendar";
 
 // Global container
 
@@ -40,12 +41,19 @@
     margin-right: 0;
 
     &:not(:last-child):after {
-      content: ', '
+      content: ', ';
     }
   }
 }
 
 // Fixed column size for the tables
+
 .table-col-fixed {
   width: 1px;
+}
+
+// Filter datepicker
+
+.filter-calendar {
+  @include ember-power-calendar($cell-size: 30px);
 }

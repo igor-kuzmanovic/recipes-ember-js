@@ -1,0 +1,22 @@
+{{yield}}
+<form class="mb-5">
+  <div class="form-row justify-content-center">
+    <div class="col-4">
+      {{#power-calendar class="filter-calendar" onSelect=(action (mut date) value="date")  as |calendar|}}
+        {{calendar.nav}}
+        {{calendar.days}}
+      {{/power-calendar}}
+    </div>
+    <div class="col-4">
+      {{#power-select-multiple options=categories selected=category onchange=(action (mut category)) dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
+        {{category.name}}
+      {{/power-select-multiple}}
+    </div>
+    <div class="col-4">
+      {{#power-select-multiple options=tags selected=tag onchange=(action (mut tag)) dropdownClass="in-modal-dropdown" placeholder="Select the tags" as |tag|}}
+        {{tag.name}}
+      {{/power-select-multiple}}
+    </div>
+  </div>
+</form>
+{{!--{{filterQuery}}--}}

@@ -68,6 +68,11 @@ export default Controller.extend({
         uploadFile() {
             // TODO: Upload the file
         },
+        refreshData(filter) {
+            this.store.query('recipe', filter).then(function (records) {
+                this.set('model.recipes', records)
+            });
+        },
         default() {
         }
     }
