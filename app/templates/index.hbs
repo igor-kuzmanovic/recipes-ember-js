@@ -1,5 +1,5 @@
-<div class="card-deck recipe-card-deck row">
-  <div class="card recipe-card col-sm-4">
+<div class="card-deck recipe-card-deck">
+  <div class="card recipe-card">
     <div class="card-body">
       <h4 class="card-title">Create your own recipe!</h4>
     </div>
@@ -7,18 +7,20 @@
   </div>
   {{#each model.recipes as |recipe|}}
     {{#if recipe.id}}
-      <div class="card recipe-card col-sm-4">
-        <img src={{recipe.imageUrl}} class="card-img-top" alt="Recipe Image">
-        <div class="card-header">
-          <h4 class="card-title">{{recipe.title}}</h4>
-          <h6 class="card-subtitle mb-2 text-muted">{{recipe.category.name}}</h6>
+      {{#unless recipe.isDeleted}}
+        <div class="card recipe-card">
+          <img src={{recipe.imageUrl}} class="card-img-top" alt="Recipe Image">
+          <div class="card-header">
+            <h4 class="card-title">{{recipe.title}}</h4>
+            <h6 class="card-subtitle mb-2 text-muted">{{recipe.category.name}}</h6>
+          </div>
+          <div class="card-body">
+            <p class="card-text recipe-card-description text-center">{{recipe.description}}</p>
+            <h6 class="card-text text-muted text-right">{{recipe-date-format recipe.date}}</h6>
+          </div>
+          {{#bs-button type="info" block="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
         </div>
-        <div class="card-body">
-          <p class="card-text recipe-card-description text-center">{{recipe.description}}</p>
-          <h6 class="card-text text-muted text-right">{{recipe-date-format recipe.date}}</h6>
-        </div>
-        {{#bs-button type="info" block="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
-      </div>
+      {{/unless}}
     {{/if}}
   {{else}}
     <h1>Sorry, no recipes available!</h1>
@@ -26,5 +28,5 @@
 </div>
 
 {{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen}}
-  {{component modalBodyComponent recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
+  {{component modalBodyComponent onSubmit=(action onSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}

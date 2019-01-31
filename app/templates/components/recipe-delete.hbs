@@ -1,2 +1,7 @@
 {{yield}}
-Are you sure you want to delete the {{recipe.title}} recipe?
+<form {{action "submitForm" on="submit"}}>
+  <p>Are you sure you want to delete the '{{recipe.title}}' recipe?</p>
+  <div class="form-group row justify-content-center">
+    {{input type="submit" class="btn btn-primary" value="Submit"}}
+  </div>
+</form>

@@ -2,10 +2,6 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-    selectedRecipe: null,
-    isModalOpen: false,
-    modalType: '',
-
     modalBodyComponent: computed('modalType', function() {
         if (this.get('modalType') === 'Create') {
             return 'recipe-form';
@@ -16,20 +12,63 @@ export default Controller.extend({
         } else if (this.get('modalType') === 'Delete') {
             return 'recipe-delete';
         }
-        return '';
+
+        return 'recipe-details';
+    }),
+
+    onSubmitAction: computed('modalType', function() {
+        if (this.get('modalType') === 'Create') {
+            return 'saveRecipe';
+        } else if (this.get('modalType') === 'Details') {
+            return 'default';
+        } else if (this.get('modalType') === 'Update') {
+            return 'saveRecipe';
+        } else if (this.get('modalType') === 'Delete') {
+            return 'deleteRecipe';
+        }
+
+        return 'default';
     }),
 
     actions: {
         openModal(modalType, recipe) {
             this.set('modalType', modalType);
+
             if (this.get('modalType') === 'Create') {
                 recipe = this.store.createRecord('recipe');
             }
+
             this.set('selectedRecipe', recipe);
             this.set(`isModalOpen`, true);
         },
+        closeModal() {
+            this.set('isModalOpen', false);
+        },
         closedModal() {
             this.set('selectedRecipe', null);
+            this.set('modalType', null);
+        },
+        saveRecipe() {
+            if (this.get('selectedRecipe')) {
+                let recipe = this.get('selectedRecipe');
+                recipe.set('imageUrl', 'http://localhost:8000/images/1a2330c39cdd158d9424a75c07d1ce73.jpeg');
+                recipe.save();
+
+                this.send('closeModal');
+            }
+        },
+        deleteRecipe() {
+            if (this.get('selectedRecipe')) {
+                let recipe = this.get('selectedRecipe');
+                recipe.destroyRecord();
+
+                this.send('closeModal');
+            }
+        },
+        uploadFile() {
+            // TODO: Upload the file
+        },
+        default() {
         }
     }
 });

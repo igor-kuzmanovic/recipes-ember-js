@@ -39,7 +39,7 @@
   <div class="form-group row">
     <label for="image" class="col-3 col-form-label">Image</label>
     <div class="col-9">
-      {{input type="file" id="image" value=image accept="image/*" class="form-control-file" oninput=(action "uploadFile")}}
+      {{input type="file" id="image" value=image accept="image/*" class="form-control-file" oninput=(action "fileChange")}}
     </div>
   </div>
   {{input type="hidden" id="imageUrl" value=recipe.imageUrl}}

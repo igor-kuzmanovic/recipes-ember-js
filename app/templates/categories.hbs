@@ -1,25 +1,27 @@
 <table class="table table-hover table-sm">
   <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Name</th>
-    <th scope="col"></th>
-  </tr>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col"></th>
+    </tr>
   </thead>
   <tbody>
   {{#each model as |category|}}
     {{#if category.id}}
-      <tr>
-        <th scope="row" class="align-middle">{{category.id}}</th>
-        <td class="align-middle">{{category.name}}</td>
-        <td class="align-middle">
-          <div class="btn-group" role="group">
-            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
-            {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
-            {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
-          </div>
-        </td>
-      </tr>
+      {{#unless category.isDeleted}}
+        <tr>
+          <th scope="row" class="align-middle">{{category.id}}</th>
+          <td class="align-middle">{{category.name}}</td>
+          <td class="align-middle">
+            <div class="btn-group" role="group">
+              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
+              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
+              {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
+            </div>
+          </td>
+        </tr>
+      {{/unless}}
     {{/if}}
   {{else}}
     <td>Sorry, no categories available!</td>
@@ -30,5 +32,5 @@
 {{#bs-button type="primary" onClick=(action "openModal" "Create" category)}}Create{{/bs-button}}
 
 {{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen}}
-  {{component modalBodyComponent category=selectedCategory}}
+  {{component modalBodyComponent onSubmit=(action onSubmitAction) category=selectedCategory}}
 {{/generic-modal}}

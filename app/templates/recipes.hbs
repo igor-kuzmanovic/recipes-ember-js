@@ -12,20 +12,22 @@
   <tbody>
     {{#each model.recipes as |recipe|}}
       {{#if recipe.id}}
-        <tr>
-          <th scope="row" class="align-middle">{{recipe.id}}</th>
-          <td class="align-middle">{{recipe.title}}</td>
-          <td class="align-middle">{{recipe.description}}</td>
-          <td class="align-middle">{{recipe.category.name}}</td>
-          <td class="align-middle">{{recipe-date-format recipe.date}}</td>
-          <td class="align-middle">
-            <div class="btn-group" role="group">
-              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
-              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" recipe)}}Update{{/bs-button}}
-              {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" recipe)}}Delete{{/bs-button}}
-            </div>
-          </td>
-        </tr>
+        {{#unless recipe.isDeleted}}
+          <tr>
+            <th scope="row" class="align-middle">{{recipe.id}}</th>
+            <td class="align-middle">{{recipe.title}}</td>
+            <td class="align-middle">{{recipe.description}}</td>
+            <td class="align-middle">{{recipe.category.name}}</td>
+            <td class="align-middle">{{recipe-date-format recipe.date}}</td>
+            <td class="align-middle">
+              <div class="btn-group" role="group">
+                {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
+                {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" recipe)}}Update{{/bs-button}}
+                {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" recipe)}}Delete{{/bs-button}}
+              </div>
+            </td>
+          </tr>
+        {{/unless}}
       {{/if}}
     {{else}}
       <td>Sorry, no recipes available!</td>
@@ -36,5 +38,5 @@
 {{#bs-button type="primary" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
 
 {{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen}}
-  {{component modalBodyComponent recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
+  {{component modalBodyComponent onSubmit=(action onSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}

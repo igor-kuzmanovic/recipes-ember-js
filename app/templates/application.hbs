@@ -1,37 +1,25 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    {{#link-to "index" class="navbar-brand"}}
-      RecipesApp
-    {{/link-to}}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          {{#link-to "recipes" class="nav-link"}}
-            Recipes
-          {{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to "ingredients" class="nav-link"}}
-            Ingredients
-          {{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to "categories" class="nav-link"}}
-            Categories
-          {{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to "tags" class="nav-link"}}
-            Tags
-          {{/link-to}}
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+{{#bs-navbar fluid=false as |navbar|}}
+  {{navbar.toggle}}
+  {{#link-to "index" class="navbar-brand"}}
+    RecipesApp
+  {{/link-to}}
+  {{#navbar.content}}
+    {{#navbar.nav as |nav|}}
+      {{#nav.item}}
+        {{#nav.link-to "recipes"}}Recipes{{/nav.link-to}}
+      {{/nav.item}}
+      {{#nav.item}}
+        {{#nav.link-to "ingredients"}}Ingredients{{/nav.link-to}}
+      {{/nav.item}}
+      {{#nav.item}}
+        {{#nav.link-to "categories"}}Categories{{/nav.link-to}}
+      {{/nav.item}}
+      {{#nav.item}}
+        {{#nav.link-to "tags"}}Tags{{/nav.link-to}}
+      {{/nav.item}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}
 <div class="container app-container">
   {{outlet}}
 </div>
