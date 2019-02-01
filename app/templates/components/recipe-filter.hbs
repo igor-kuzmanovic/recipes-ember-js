@@ -1,11 +1,17 @@
 {{yield}}
 <form class="mb-5">
   <div class="form-row justify-content-center">
-    <div class="col-4">
-      {{#power-calendar class="filter-calendar" onSelect=(action (mut date) value="date")  as |calendar|}}
-        {{calendar.nav}}
-        {{calendar.days}}
-      {{/power-calendar}}
+    <div>
+      {{#power-datepicker selected=date onSelect=(action (mut date) value="date") as |dp|}}
+        {{#dp.trigger tabindex="-1"}}
+          {{#bs-button type="default" class="btn-filter btn-datepicker"}}{{fa-icon "calendar"}}{{/bs-button}}
+        {{/dp.trigger}}
+
+        {{#dp.content class="filter-calendar"}}
+          {{dp.nav}}
+          {{dp.days}}
+        {{/dp.content}}
+      {{/power-datepicker}}
     </div>
     <div class="col-4">
       {{#power-select-multiple options=categories selected=category onchange=(action (mut category)) dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
@@ -17,6 +23,11 @@
         {{tag.name}}
       {{/power-select-multiple}}
     </div>
+    <div>
+      {{#bs-button type="primary" class="btn-filter" onClick=(action "onFilterClick" filter)}}{{fa-icon "search"}}{{/bs-button}}
+    </div>
+    <div>
+      {{#bs-button type="danger" class="btn-filter" onClick=(action "onClearClick")}}{{fa-icon "eraser"}}{{/bs-button}}
+    </div>
   </div>
 </form>
-{{!--{{filterQuery}}--}}

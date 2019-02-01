@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
+
     modalBodyComponent: computed('modalType', function() {
         if (this.get('modalType') === 'Create') {
             return 'recipe-form';
@@ -41,22 +42,25 @@ export default Controller.extend({
             this.set('selectedRecipe', recipe);
             this.set(`isModalOpen`, true);
         },
+
         closeModal() {
             this.set('isModalOpen', false);
         },
+
         closedModal() {
             this.set('selectedRecipe', null);
             this.set('modalType', null);
         },
+
         saveRecipe() {
             if (this.get('selectedRecipe')) {
                 let recipe = this.get('selectedRecipe');
-                recipe.set('imageUrl', 'http://localhost:8000/images/default.jpeg');
                 recipe.save();
 
                 this.send('closeModal');
             }
         },
+
         deleteRecipe() {
             if (this.get('selectedRecipe')) {
                 let recipe = this.get('selectedRecipe');
@@ -65,14 +69,22 @@ export default Controller.extend({
                 this.send('closeModal');
             }
         },
-        uploadFile() {
-            // TODO: Upload the file
+
+        filterResults(filter) {
+            let self = this;
+
+            if (filter) {
+                this.get('store').query('recipe', filter, {include: 'category,ingredients,tags'}).then(function (data) {
+                    self.set('model.recipes', data);
+                });
+            } else {
+                this.get('store').query('recipe', {include: 'category,ingredients,tags'}).then(function (data) {
+                    self.set('model.recipes', data);
+                });
+            }
+
         },
-        refreshData(filter) {
-            this.store.query('recipe', filter).then(function (records) {
-                this.set('model.recipes', records)
-            });
-        },
+
         default() {
         }
     }

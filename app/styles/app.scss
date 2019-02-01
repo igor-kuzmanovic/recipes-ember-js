@@ -1,6 +1,7 @@
 @import "ember-bootstrap/bootstrap";
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
+@import 'ember-basic-dropdown';
 @import "ember-power-calendar";
 
 // Global container
@@ -16,16 +17,27 @@
 
   .recipe-card {
     min-width: 25vh;
-    max-width: 25vw;
-    margin-bottom: 1rem;
+    max-width: 25vh;
+    margin-top: 1rem;
     padding-left: 0;
     padding-right: 0;
+
+    .card-img-recipe {
+      height: 250px;
+    }
 
     .recipe-card-description {
       height: 6rem;
       overflow: auto;
     }
   }
+}
+
+// Recipe details
+
+.img-recipe {
+  max-width: 300px;
+  max-height: 200px;
 }
 
 // Raised the z-index of the power-select components because bootstrap modals are @1500
@@ -55,5 +67,16 @@
 // Filter datepicker
 
 .filter-calendar {
-  @include ember-power-calendar($cell-size: 30px);
+  @include ember-power-calendar($cell-size: 50px);
+}
+
+.btn-filter {
+  padding: 0.25rem 1rem;
+  margin-left: 5px;
+  margin-right: 5px;
+
+  &.btn-datepicker {
+    background-color: white;
+    border-color: #ccc;
+  }
 }

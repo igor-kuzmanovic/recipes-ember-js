@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 
 export default Route.extend({
+
     model() {
         return RSVP.hash({
             recipes: this.store.findAll('recipe', {include: 'category,ingredients,tags'}),
@@ -10,4 +11,5 @@ export default Route.extend({
             tags: this.store.findAll('tag')
         });
     }
+
 });

@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
+
     modalBodyComponent: computed('modalType', function() {
         if (this.get('modalType') === 'Create') {
             return 'ingredient-form';
@@ -41,13 +42,16 @@ export default Controller.extend({
             this.set('selectedIngredient', ingredient);
             this.set(`isModalOpen`, true);
         },
+
         closeModal() {
             this.set('isModalOpen', false);
         },
+
         closedModal() {
             this.set('selectedIngredient', null);
             this.set('modalType', null);
         },
+
         saveIngredient() {
             if (this.get('selectedIngredient')) {
                 let ingredient = this.get('selectedIngredient');
@@ -56,6 +60,7 @@ export default Controller.extend({
                 this.send('closeModal');
             }
         },
+
         deleteIngredient() {
             if (this.get('selectedIngredient')) {
                 let ingredient = this.get('selectedIngredient');
@@ -64,6 +69,7 @@ export default Controller.extend({
                 this.send('closeModal');
             }
         },
+
         default() {
         }
     }

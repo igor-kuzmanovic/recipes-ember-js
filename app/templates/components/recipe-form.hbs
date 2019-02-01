@@ -39,9 +39,22 @@
   <div class="form-group row">
     <label for="image" class="col-3 col-form-label">Image</label>
     <div class="col-9">
-      {{input type="file" id="image" value=image accept="image/*" class="form-control-file" oninput=(action "fileChange")}}
+      {{#file-upload name="photos" accept="image/*" onfileadd=(action "onFileAdd") as |queue|}}
+        <a class="btn btn-primary" role="button">
+          {{#if queue.files.length}}
+            <span class="text-white">Uploading... {{fa-icon "spinner" spin=true}}</span>
+          {{else}}
+            <span class="text-white">Upload File {{fa-icon "upload"}}</span>
+          {{/if}}
+        </a>
+      {{/file-upload}}
     </div>
   </div>
+  {{#if recipe.imageUrl}}
+    <div class="form-group row justify-content-center">
+      <img src={{recipe.imageUrl}} class="img-recipe img-thumbnail" alt="Recipe Image">
+    </div>
+  {{/if}}
   {{input type="hidden" id="imageUrl" value=recipe.imageUrl}}
   <hr>
   <div class="form-group row justify-content-center">

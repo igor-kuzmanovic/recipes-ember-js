@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
+
     title: computed('type', 'modelType', function() {
         if (this.get('type') === 'Create') {
             return `Create a new ${this.get('modelType')}`;
@@ -21,4 +22,5 @@ export default Component.extend({
             this.set(`isOpen`, false);
         }
     }
+
 });
