@@ -14,7 +14,7 @@
   <div class="form-group row">
     <label for="ingredients" class="col-3 col-form-label">Ingredients</label>
     <div class="col-9">
-      {{#power-select-multiple selected=recipe.ingredients options=ingredients onchange=(action (mut recipe.ingredients)) dropdownClass="in-modal-dropdown" placeholder="Select the ingredients" as |ingredient|}}
+      {{#power-select-multiple selected=recipe.ingredients searchField="name" options=ingredients onchange=(action (mut recipe.ingredients)) dropdownClass="in-modal-dropdown" placeholder="Select the ingredients" as |ingredient|}}
         {{ingredient.name}}
       {{/power-select-multiple}}
     </div>

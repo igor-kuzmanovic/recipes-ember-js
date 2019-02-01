@@ -9,7 +9,7 @@ export default Component.extend({
 
        let date = this.get('date');
        if (date) {
-           filter = moment().format('YYYY-MM-DD');
+           filter = moment(date).format('YYYY-MM-DD');
        }
 
        return filter;
