@@ -30,6 +30,6 @@
   </tbody>
 </table>
 
-{{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen}}
+{{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen onClose=(action 'onModalClose')}}
   {{component modalBodyComponent onSubmit=(action onSubmitAction) category=selectedCategory}}
 {{/generic-modal}}

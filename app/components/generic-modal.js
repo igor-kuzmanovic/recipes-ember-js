@@ -19,6 +19,7 @@ export default Component.extend({
 
     actions: {
         closeSelf() {
+            this.onClose();
             this.set(`isOpen`, false);
         }
     }

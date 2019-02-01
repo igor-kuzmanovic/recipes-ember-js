@@ -22,7 +22,7 @@
   <div class="form-group row">
     <label for="category" class="col-3 col-form-label">Category</label>
     <div class="col-9">
-      {{#power-select selected=recipe.category options=categories onchange=(action (mut recipe.category)) dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
+      {{#power-select selected=recipe.category searchField="name" options=categories onchange=(action (mut recipe.category)) dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
         {{category.name}}
       {{/power-select}}
     </div>
@@ -30,7 +30,7 @@
   <div class="form-group row">
     <label for="tags" class="col-3 col-form-label">Tags</label>
     <div class="col-9">
-      {{#power-select-multiple selected=recipe.tags options=tags onchange=(action (mut recipe.tags)) dropdownClass="in-modal-dropdown" placeholder="Select the tags" as |tag|}}
+      {{#power-select-multiple selected=recipe.tags searchField="name" options=tags onchange=(action (mut recipe.tags)) dropdownClass="in-modal-dropdown" placeholder="Select the tags" as |tag|}}
         {{tag.name}}
       {{/power-select-multiple}}
     </div>
@@ -43,7 +43,7 @@
           {{#if queue.files.length}}
             <span class="text-white">Uploading... {{fa-icon "spinner" spin=true}}</span>
           {{else}}
-            <span class="text-white">Upload File {{fa-icon "upload"}}</span>
+            <span class="text-white">Upload {{fa-icon "upload"}}</span>
           {{/if}}
         </a>
       {{/file-upload}}

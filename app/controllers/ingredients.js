@@ -47,7 +47,8 @@ export default Controller.extend({
             this.set('isModalOpen', false);
         },
 
-        closedModal() {
+        onModalClose() {
+            this.get('selectedIngredient').rollbackAttributes();
             this.set('selectedIngredient', null);
             this.set('modalType', null);
         },
