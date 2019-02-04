@@ -36,6 +36,6 @@
   </tbody>
 </table>
 
-{{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen onClose=(action 'onModalClose')}}
+{{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen onClose=(action "onModalClose")}}
   {{component modalBodyComponent onSubmit=(action onSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}

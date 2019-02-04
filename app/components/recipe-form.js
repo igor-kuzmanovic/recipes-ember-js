@@ -1,16 +1,15 @@
 import Component from '@ember/component';
-import ENV from 'recipes-ember/config/environment'
+import { inject } from '@ember/service';
 
 export default Component.extend({
+    imageUploader: inject('image-uploader'),
 
     actions: {
         onFileAdd(file) {
-            let self = this;
-
-            file.upload(ENV.APP.HOST + '/images').then(function(data) {
-                self.set('recipe.imageUrl', data.body.url);
-            }).catch(function() {
-                self.set('recipe.imageUrl', 'http://localhost:8000/images/default.jpeg');
+            this.get('imageUploader').uploadImage(file).then(data => {
+                this.set('recipe.imageUrl', data.body.url);
+            }).catch(() => {
+                this.set('recipe.imageUrl', 'http://localhost:8000/images/default.jpeg');
             });
         },
 

@@ -8,28 +8,28 @@
     </tr>
   </thead>
   <tbody>
-  {{#each model as |category|}}
-    {{#if category.id}}
-      {{#unless category.isDeleted}}
-        <tr>
-          <th scope="row" class="align-middle">{{category.id}}</th>
-          <td class="align-middle">{{category.name}}</td>
-          <td class="align-middle">
-            <div class="btn-group" role="group">
-              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
-              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
-              {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
-            </div>
-          </td>
-        </tr>
-      {{/unless}}
-    {{/if}}
-  {{else}}
-    <td colspan="3">Sorry, no categories available!</td>
-  {{/each}}
+    {{#each model as |category|}}
+      {{#if category.id}}
+        {{#unless category.isDeleted}}
+          <tr>
+            <th scope="row" class="align-middle">{{category.id}}</th>
+            <td class="align-middle">{{category.name}}</td>
+            <td class="align-middle">
+              <div class="btn-group" role="group">
+                {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" category)}}Details{{/bs-button}}
+                {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" category)}}Update{{/bs-button}}
+                {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" category)}}Delete{{/bs-button}}
+              </div>
+            </td>
+          </tr>
+        {{/unless}}
+      {{/if}}
+    {{else}}
+      <td colspan="3">Sorry, no categories available!</td>
+    {{/each}}
   </tbody>
 </table>
 
-{{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen onClose=(action 'onModalClose')}}
+{{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen onClose=(action "onModalClose")}}
   {{component modalBodyComponent onSubmit=(action onSubmitAction) category=selectedCategory}}
 {{/generic-modal}}

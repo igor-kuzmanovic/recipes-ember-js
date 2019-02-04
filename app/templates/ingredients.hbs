@@ -8,28 +8,28 @@
     </tr>
   </thead>
   <tbody>
-  {{#each model as |ingredient|}}
-    {{#if ingredient.id}}
-      {{#unless ingredient.isDeleted}}
-        <tr>
-          <th scope="row" class="align-middle">{{ingredient.id}}</th>
-          <td class="align-middle">{{ingredient.name}}</td>
-          <td class="align-middle">
-            <div class="btn-group" role="group">
-              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" ingredient)}}Details{{/bs-button}}
-              {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" ingredient)}}Update{{/bs-button}}
-              {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" ingredient)}}Delete{{/bs-button}}
-            </div>
-          </td>
-        </tr>
-      {{/unless}}
-    {{/if}}
-  {{else}}
-    <td colspan="3">Sorry, no ingredients available!</td>
-  {{/each}}
+    {{#each model as |ingredient|}}
+      {{#if ingredient.id}}
+        {{#unless ingredient.isDeleted}}
+          <tr>
+            <th scope="row" class="align-middle">{{ingredient.id}}</th>
+            <td class="align-middle">{{ingredient.name}}</td>
+            <td class="align-middle">
+              <div class="btn-group" role="group">
+                {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" ingredient)}}Details{{/bs-button}}
+                {{#bs-button type="info" outline="true" onClick=(action "openModal" "Update" ingredient)}}Update{{/bs-button}}
+                {{#bs-button type="danger" outline="true" onClick=(action "openModal" "Delete" ingredient)}}Delete{{/bs-button}}
+              </div>
+            </td>
+          </tr>
+        {{/unless}}
+      {{/if}}
+    {{else}}
+      <td colspan="3">Sorry, no ingredients available!</td>
+    {{/each}}
   </tbody>
 </table>
 
-{{#generic-modal type=modalType modelType="Ingredient" isOpen=isModalOpen onClose=(action 'onModalClose')}}
+{{#generic-modal type=modalType modelType="Ingredient" isOpen=isModalOpen onClose=(action "onModalClose")}}
   {{component modalBodyComponent onSubmit=(action onSubmitAction) ingredient=selectedIngredient}}
 {{/generic-modal}}
