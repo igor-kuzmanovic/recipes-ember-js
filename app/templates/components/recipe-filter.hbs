@@ -1,18 +1,15 @@
 <form class="mb-5">
   <div class="form-row justify-content-center">
-    <div>
+    <div class="mr-1">
       {{#power-datepicker selected=date onSelect=(action "onDateChange" value="date") as |dp|}}
         {{#dp.trigger tabindex="-1"}}
-          {{#bs-button type="default" class="btn-filter btn-datepicker"}}{{fa-icon "calendar"}}{{/bs-button}}
+          {{input type="text" id="title" disabled=true value=(moment-format date "Do MMM YYYY" allow-empty=true) class="form-control date-input" placeholder="Select a date"}}
         {{/dp.trigger}}
         {{#dp.content class="filter-calendar"}}
           {{dp.nav}}
           {{dp.days}}
         {{/dp.content}}
       {{/power-datepicker}}
-    </div>
-    <div class="col-2">
-      {{input type="text" id="title" disabled=true value=(moment-format date "Do MMM YYYY" allow-empty=true) class="form-control date-input" placeholder="Select a date"}}
     </div>
     <div class="col-3">
       {{#power-select-multiple options=categories searchField="name" selected=category onchange=(action "onCategoryChange") dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
