@@ -5,25 +5,25 @@ import moment from 'moment';
 export default Component.extend({
 
     filter: computed('date', 'category', 'tag', function() {
-        let filter = { filter: {} };
+        let filter = {};
 
         let date = this.get('date');
         if (date) {
             if (date) {
-                filter.filter.date = moment(date).format('YYYY-MM-DD');
+                filter.date = moment(date).format('YYYY-MM-DD');
             }
         }
 
         let categories = this.get('category');
         if (categories) {
             if (categories && categories.length > 0) {
-                filter.filter.category = '';
+                filter.category = '';
 
                 categories.forEach(function(category, key, array) {
-                    filter.filter.category  += category.id;
+                    filter.category  += category.id;
 
                     if (!Object.is(array.length - 1, key)) {
-                        filter.filter.category  += ',';
+                        filter.category  += ',';
                     }
                 });
             }
@@ -32,13 +32,13 @@ export default Component.extend({
         let tags = this.get('tag');
         if (tags) {
             if (tags && tags.length > 0) {
-                filter.filter.tag = '';
+                filter.tag = '';
 
                 tags.forEach(function(tag, key, array) {
-                    filter.filter.tag += tag.id;
+                    filter.tag += tag.id;
 
                     if (!Object.is(array.length - 1, key)) {
-                        filter.filter.tag += ',';
+                        filter.tag += ',';
                     }
                 });
             }

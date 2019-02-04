@@ -70,16 +70,16 @@ export default Controller.extend({
         },
 
         filterResults(filter) {
+            let query = {};
+            query.include = 'category,ingredients,tags';
+
             if (filter) {
-                this.get('store').query('recipe', filter, {include: 'category,ingredients,tags'}).then(data =>{
-                    this.set('model.recipes', data);
-                });
-            } else {
-                this.get('store').query('recipe', {include: 'category,ingredients,tags'}).then(data => {
-                    this.set('model.recipes', data);
-                });
+                query.filter = filter;
             }
 
+            this.get('store').query('recipe', query).then(data =>{
+                this.set('model.recipes', data);
+            });
         }
     }
 });
