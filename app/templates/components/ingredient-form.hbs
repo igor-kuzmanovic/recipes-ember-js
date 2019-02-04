@@ -6,7 +6,8 @@
     </div>
   </div>
   <hr>
-  <div class="form-group row justify-content-center">
+  <div class="form-group row justify-content-between modal-btn-form-group">
+    {{#bs-button type="danger" onClick=(action onFormCancel)}}Cancel{{/bs-button}}
     {{input type="submit" class="btn btn-primary" value="Submit"}}
   </div>
 </form>

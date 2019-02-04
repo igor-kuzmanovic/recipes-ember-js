@@ -1,4 +1,5 @@
 {{#bs-button type="primary" class="mb-3" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
+
 <table class="table table-hover table-responsive-sm">
   <thead>
     <tr>
@@ -37,5 +38,7 @@
 </table>
 
 {{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
-  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
+  {{component modalBodyComponent
+              onFormSubmit=(action modalSubmitAction) onFormCancel=(action "closeModal")
+              recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}

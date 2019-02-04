@@ -32,5 +32,7 @@
 </table>
 
 {{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
-  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) category=selectedCategory}}
+  {{component modalBodyComponent
+              onFormSubmit=(action modalSubmitAction) onFormCancel=(action "closeModal")
+              category=selectedCategory}}
 {{/generic-modal}}

@@ -39,7 +39,7 @@
     <label for="image" class="col-3 col-form-label">Image</label>
     <div class="col-9">
       {{#file-upload name="photos" accept="image/*" onfileadd=(action "onFileAdd") as |queue|}}
-        <a class="btn btn-primary" role="button">
+        <a class="btn btn-secondary" role="button">
           {{#if queue.files.length}}
             <span class="text-white">Uploading... {{fa-icon "spinner" spin=true}}</span>
           {{else}}
@@ -56,7 +56,8 @@
   {{/if}}
   {{input type="hidden" id="imageUrl" value=recipe.imageUrl}}
   <hr>
-  <div class="form-group row justify-content-center">
+  <div class="form-group row justify-content-between modal-btn-form-group">
+    {{#bs-button type="danger" onClick=(action onFormCancel)}}Cancel{{/bs-button}}
     {{input type="submit" class="btn btn-primary" value="Submit"}}
   </div>
 </form>

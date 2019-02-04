@@ -2,6 +2,7 @@
   <p>Are you sure you want to delete the '{{tag.name}}' tag?</p>
   <hr>
   <div class="form-group row justify-content-center">
+    {{#bs-button type="danger" onClick=(action onFormCancel)}}Cancel{{/bs-button}}
     {{input type="submit" class="btn btn-primary" value="Confirm"}}
   </div>
 </form>

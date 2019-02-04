@@ -30,5 +30,7 @@
 </div>
 
 {{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
-  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
+  {{component modalBodyComponent
+              onFormSubmit=(action modalSubmitAction) onFormCancel=(action "closeModal")
+              recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}

@@ -1,4 +1,5 @@
 {{#bs-button type="primary" class="mb-3" onClick=(action "openModal" "Create" tag)}}Create{{/bs-button}}
+
 <table class="table table-hover table-responsive-sm">
   <thead>
     <tr>
@@ -31,5 +32,7 @@
 </table>
 
 {{#generic-modal type=modalType modelType="Tag" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
-  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) tag=selectedTag}}
+  {{component modalBodyComponent
+              onFormSubmit=(action modalSubmitAction) onFormCancel=(action "closeModal")
+              tag=selectedTag}}
 {{/generic-modal}}
