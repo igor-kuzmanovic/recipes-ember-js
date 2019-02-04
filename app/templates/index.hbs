@@ -4,8 +4,8 @@
   <div class="card recipe-card">
     <div class="card-body">
       <h2 class="card-title text-center">Create your own recipe!</h2>
+      {{#bs-button type="primary" block="true" class="mt-5" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
     </div>
-    {{#bs-button type="primary" block="true" onClick=(action "openModal" "Create" recipe)}}Create{{/bs-button}}
   </div>
   {{#each model.recipes as |recipe|}}
     {{#if recipe.id}}
@@ -16,11 +16,13 @@
             <h4 class="card-title">{{recipe.title}}</h4>
             <h6 class="card-subtitle mb-2 text-muted">{{recipe.category.name}}</h6>
           </div>
-          <div class="card-body">
-            <p class="card-text recipe-card-description text-center">{{recipe.description}}</p>
+          <div class="card-body text-center">
+            <p class="card-text recipe-card-description">{{recipe.description}}</p>
+            {{#bs-button type="info" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
+          </div>
+          <div class="card-footer">
             <h6 class="card-text text-muted text-right">{{recipe-date-format recipe.date}}</h6>
           </div>
-          {{#bs-button type="info" block="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
         </div>
       {{/unless}}
     {{/if}}

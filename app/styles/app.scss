@@ -33,6 +33,12 @@
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .recipe-card-deck {
+    justify-content: center;
+  }
+}
+
 // Recipe details
 
 .img-recipe {
