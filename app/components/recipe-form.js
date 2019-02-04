@@ -7,17 +7,10 @@ export default Component.extend({
 
     actions: {
         onFileAdd(file) {
-            this.get('imageUploader').uploadImage(file).then(data => {
-                this.set('recipe.imageUrl', data.body.url);
-            }).catch(() => {
-                this.set('recipe.imageUrl', 'http://localhost:8000/images/default.jpeg');
-            });
-        },
-
-        submitForm() {
-            event.preventDefault();
-            this.onSubmit();
-        },
+            this.get('imageUploader').uploadImage(file).then(url => {
+                this.set('recipe.imageUrl', url);
+            })
+        }
     }
 
 });

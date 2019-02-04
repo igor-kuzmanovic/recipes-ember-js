@@ -4,31 +4,29 @@ import { computed } from '@ember/object';
 export default Controller.extend({
 
     modalBodyComponent: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'ingredient-form';
-        } else if (this.get('modalType') === 'Details') {
-            return 'ingredient-details';
-        } else if (this.get('modalType') === 'Update') {
-            return 'ingredient-form';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'ingredient-delete';
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'ingredient-form';
+            case 'Delete':
+                return 'ingredient-delete';
+            case 'Details':
+            default:
+                return 'ingredient-details';
         }
-
-        return 'ingredient-details';
     }),
 
-    onSubmitAction: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'saveIngredient';
-        } else if (this.get('modalType') === 'Details') {
-            return 'default';
-        } else if (this.get('modalType') === 'Update') {
-            return 'saveIngredient';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'deleteIngredient';
+    modalSubmitAction: computed('modalType', function() {
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'saveIngredient';
+            case 'Delete':
+                return 'deleteIngredient';
+            case 'Details':
+            default:
+                return 'closeModal';
         }
-
-        return 'default';
     }),
 
     actions: {
@@ -47,31 +45,28 @@ export default Controller.extend({
             this.set('isModalOpen', false);
         },
 
-        onModalClose() {
+        onModalClosed() {
             this.get('selectedIngredient').rollbackAttributes();
             this.set('selectedIngredient', null);
             this.set('modalType', null);
         },
 
         saveIngredient() {
-            if (this.get('selectedIngredient')) {
-                let ingredient = this.get('selectedIngredient');
+            let ingredient = this.get('selectedIngredient');
+            if (ingredient) {
                 ingredient.save();
-
-                this.send('closeModal');
             }
+
+            this.send('closeModal');
         },
 
         deleteIngredient() {
-            if (this.get('selectedIngredient')) {
-                let ingredient = this.get('selectedIngredient');
+            let ingredient = this.get('selectedIngredient');
+            if (ingredient) {
                 ingredient.destroyRecord();
-
-                this.send('closeModal');
             }
-        },
 
-        default() {
+            this.send('closeModal');
         }
     }
 });

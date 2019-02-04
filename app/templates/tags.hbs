@@ -30,6 +30,6 @@
   </tbody>
 </table>
 
-{{#generic-modal type=modalType modelType="Tag" isOpen=isModalOpen onClose=(action "onModalClose")}}
-  {{component modalBodyComponent onSubmit=(action onSubmitAction) tag=selectedTag}}
+{{#generic-modal type=modalType modelType="Tag" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
+  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) tag=selectedTag}}
 {{/generic-modal}}

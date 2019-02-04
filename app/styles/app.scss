@@ -18,7 +18,7 @@
   .recipe-card {
     min-width: 25vh;
     max-width: 25vh;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding-left: 0;
     padding-right: 0;
 
@@ -70,7 +70,15 @@
   width: 1px;
 }
 
-// Filter datepicker
+// Filter customization
+
+.date-input {
+  height: 34px;
+
+  &:disabled {
+    background-color: inherit;
+  }
+}
 
 .filter-calendar {
   @include ember-power-calendar($cell-size: 50px);

@@ -1,4 +1,5 @@
 {{#bs-button type="primary" class="mb-3" onClick=(action "openModal" "Create" category)}}Create{{/bs-button}}
+
 <table class="table table-hover table-responsive-sm">
   <thead>
     <tr>
@@ -30,6 +31,6 @@
   </tbody>
 </table>
 
-{{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen onClose=(action "onModalClose")}}
-  {{component modalBodyComponent onSubmit=(action onSubmitAction) category=selectedCategory}}
+{{#generic-modal type=modalType modelType="Category" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
+  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) category=selectedCategory}}
 {{/generic-modal}}

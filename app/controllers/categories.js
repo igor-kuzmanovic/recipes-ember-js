@@ -4,31 +4,29 @@ import { computed } from '@ember/object';
 export default Controller.extend({
 
     modalBodyComponent: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'category-form';
-        } else if (this.get('modalType') === 'Details') {
-            return 'category-details';
-        } else if (this.get('modalType') === 'Update') {
-            return 'category-form';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'category-delete';
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'category-form';
+            case 'Delete':
+                return 'category-delete';
+            case 'Details':
+            default:
+                return 'category-details';
         }
-
-        return 'category-details';
     }),
 
-    onSubmitAction: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'saveCategory';
-        } else if (this.get('modalType') === 'Details') {
-            return 'default';
-        } else if (this.get('modalType') === 'Update') {
-            return 'saveCategory';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'deleteCategory';
+    modalSubmitAction: computed('modalType', function() {
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'saveCategory';
+            case 'Delete':
+                return 'deleteCategory';
+            case 'Details':
+            default:
+                return 'closeModal';
         }
-
-        return 'default';
     }),
 
     actions: {
@@ -47,31 +45,28 @@ export default Controller.extend({
             this.set('isModalOpen', false);
         },
 
-        onModalClose() {
+        onModalClosed() {
             this.get('selectedCategory').rollbackAttributes();
             this.set('selectedCategory', null);
             this.set('modalType', null);
         },
 
         saveCategory() {
-            if (this.get('selectedCategory')) {
-                let category = this.get('selectedCategory');
+            let category = this.get('selectedCategory');
+            if (category) {
                 category.save();
-
-                this.send('closeModal');
             }
+
+            this.send('closeModal');
         },
 
         deleteCategory() {
-            if (this.get('selectedCategory')) {
-                let category = this.get('selectedCategory');
+            let category = this.get('selectedCategory');
+            if (category) {
                 category.destroyRecord();
-
-                this.send('closeModal');
             }
-        },
 
-        default() {
+            this.send('closeModal');
         }
     }
 });

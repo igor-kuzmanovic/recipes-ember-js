@@ -4,32 +4,31 @@ import { computed } from '@ember/object';
 export default Controller.extend({
 
     modalBodyComponent: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'tag-form';
-        } else if (this.get('modalType') === 'Details') {
-            return 'tag-details';
-        } else if (this.get('modalType') === 'Update') {
-            return 'tag-form';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'tag-delete';
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'tag-form';
+            case 'Delete':
+                return 'tag-delete';
+            case 'Details':
+            default:
+                return 'tag-details';
         }
-
-        return 'tag-details';
     }),
 
-    onSubmitAction: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'saveTag';
-        } else if (this.get('modalType') === 'Details') {
-            return 'default';
-        } else if (this.get('modalType') === 'Update') {
-            return 'saveTag';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'deleteTag';
+    modalSubmitAction: computed('modalType', function() {
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'saveTag';
+            case 'Delete':
+                return 'deleteTag';
+            case 'Details':
+            default:
+                return 'closeModal';
         }
-
-        return 'default';
     }),
+
 
     actions: {
         openModal(modalType, tag) {
@@ -47,31 +46,28 @@ export default Controller.extend({
             this.set('isModalOpen', false);
         },
 
-        onModalClose() {
+        onModalClosed() {
             this.get('selectedTag').rollbackAttributes();
             this.set('selectedTag', null);
             this.set('modalType', null);
         },
 
         saveTag() {
-            if (this.get('selectedTag')) {
-                let tag = this.get('selectedTag');
+            let tag = this.get('selectedTag');
+            if (tag) {
                 tag.save();
-
-                this.send('closeModal');
             }
+
+            this.send('closeModal');
         },
 
         deleteTag() {
-            if (this.get('selectedTag')) {
-                let tag = this.get('selectedTag');
+            let tag = this.get('selectedTag');
+            if (tag) {
                 tag.destroyRecord();
-
-                this.send('closeModal');
             }
-        },
 
-        default() {
+            this.send('closeModal');
         }
     }
 });

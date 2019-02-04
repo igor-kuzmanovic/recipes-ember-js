@@ -4,101 +4,74 @@ import moment from 'moment';
 
 export default Component.extend({
 
-    dateFilter: computed('date', function() {
-       let filter = null;
+    filter: computed('date', 'category', 'tag', function() {
+        let filter = { filter: {} };
 
-       let date = this.get('date');
-       if (date) {
-           filter = moment(date).format('YYYY-MM-DD');
-       }
-
-       return filter;
-    }),
-
-    categoryFilter: computed('category', function() {
-        let filter = null;
+        let date = this.get('date');
+        if (date) {
+            if (date) {
+                filter.filter.date = moment(date).format('YYYY-MM-DD');
+            }
+        }
 
         let categories = this.get('category');
-        if (categories && categories.length > 0) {
-            filter = '';
+        if (categories) {
+            if (categories && categories.length > 0) {
+                filter.filter.category = '';
 
-            categories.forEach(function(category, key, array) {
-                filter += category.id;
+                categories.forEach(function(category, key, array) {
+                    filter.filter.category  += category.id;
 
-                if (!Object.is(array.length - 1, key)) {
-                    filter += ',';
-                }
-            });
+                    if (!Object.is(array.length - 1, key)) {
+                        filter.filter.category  += ',';
+                    }
+                });
+            }
         }
-
-        return filter;
-    }),
-
-    tagFilter: computed('tag', function() {
-        let filter = null;
 
         let tags = this.get('tag');
-        if (tags && tags.length > 0) {
-            filter = '';
+        if (tags) {
+            if (tags && tags.length > 0) {
+                filter.filter.tag = '';
 
-            tags.forEach(function(tag, key, array) {
-                filter += tag.id;
+                tags.forEach(function(tag, key, array) {
+                    filter.filter.tag += tag.id;
 
-                if (!Object.is(array.length - 1, key)) {
-                    filter += ',';
-                }
-            });
-        }
-
-        return filter;
-    }),
-
-    filter: computed('dateFilter', 'categoryFilter', 'tagFilter', function() {
-        let filter = null;
-
-        let date = this.get('dateFilter');
-        if (date) {
-            if (!filter) {
-                filter = { filter: {} };
+                    if (!Object.is(array.length - 1, key)) {
+                        filter.filter.tag += ',';
+                    }
+                });
             }
-
-            filter.filter.date = date;
-        }
-
-        let category = this.get('categoryFilter');
-        if (category) {
-            if (!filter) {
-                filter = { filter: {} };
-            }
-
-            filter.filter.category = category;
-        }
-
-        let tag = this.get('tagFilter');
-        if (tag) {
-            if (!filter) {
-                filter = { filter: {} };
-            }
-
-            filter.filter.tag = tag;
         }
 
         return filter;
     }),
 
     actions: {
-        onFilterClick(filter) {
-            if (filter) {
-                this.onFilterResults(filter);
-            }
+        onDateChange(date) {
+            this.set('date', date);
+
+            this.get('onFilterResults')(this.get('filter'));
         },
 
-        onClearClick() {
+        onCategoryChange(category) {
+            this.set('category', category);
+
+            this.get('onFilterResults')(this.get('filter'));
+        },
+
+        onTagChange(tag) {
+            this.set('tag', tag);
+
+            this.get('onFilterResults')(this.get('filter'));
+        },
+
+        onClear() {
             this.set('date', null);
             this.set('category', null);
             this.set('tag', null);
 
-            this.onFilterResults(null);
+            this.get('onFilterResults')();
         }
     }
 

@@ -4,31 +4,29 @@ import { computed } from '@ember/object';
 export default Controller.extend({
 
     modalBodyComponent: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'recipe-form';
-        } else if (this.get('modalType') === 'Details') {
-            return 'recipe-details';
-        } else if (this.get('modalType') === 'Update') {
-            return 'recipe-form';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'recipe-delete';
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'recipe-form';
+            case 'Delete':
+                return 'recipe-delete';
+            case 'Details':
+            default:
+                return 'recipe-details';
         }
-
-        return 'recipe-details';
     }),
 
-    onSubmitAction: computed('modalType', function() {
-        if (this.get('modalType') === 'Create') {
-            return 'saveRecipe';
-        } else if (this.get('modalType') === 'Details') {
-            return 'default';
-        } else if (this.get('modalType') === 'Update') {
-            return 'saveRecipe';
-        } else if (this.get('modalType') === 'Delete') {
-            return 'deleteRecipe';
+    modalSubmitAction: computed('modalType', function() {
+        switch (this.get('modalType')) {
+            case 'Create':
+            case 'Update':
+                return 'saveRecipe';
+            case 'Delete':
+                return 'deleteRecipe';
+            case 'Details':
+            default:
+                return 'closeModal';
         }
-
-        return 'default';
     }),
 
     actions: {
@@ -47,28 +45,28 @@ export default Controller.extend({
             this.set('isModalOpen', false);
         },
 
-        onModalClose() {
+        onModalClosed() {
             this.get('selectedRecipe').rollbackAttributes();
             this.set('selectedRecipe', null);
             this.set('modalType', null);
         },
 
         saveRecipe() {
-            if (this.get('selectedRecipe')) {
-                let recipe = this.get('selectedRecipe');
+            let recipe = this.get('selectedRecipe');
+            if (recipe) {
                 recipe.save();
-
-                this.send('closeModal');
             }
+
+            this.send('closeModal');
         },
 
         deleteRecipe() {
-            if (this.get('selectedRecipe')) {
-                let recipe = this.get('selectedRecipe');
+            let recipe = this.get('selectedRecipe');
+            if (recipe) {
                 recipe.destroyRecord();
-
-                this.send('closeModal');
             }
+
+            this.send('closeModal');
         },
 
         filterResults(filter) {
@@ -82,9 +80,6 @@ export default Controller.extend({
                 });
             }
 
-        },
-
-        default() {
         }
     }
 });

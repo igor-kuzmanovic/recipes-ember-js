@@ -21,7 +21,7 @@
             {{#bs-button type="info" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
           </div>
           <div class="card-footer">
-            <h6 class="card-text text-muted text-right">{{recipe-date-format recipe.date}}</h6>
+            <h6 class="card-text text-muted text-center">{{recipe-date-format recipe.date}}</h6>
           </div>
         </div>
       {{/unless}}
@@ -29,6 +29,6 @@
   {{/each}}
 </div>
 
-{{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen onClose=(action "onModalClose")}}
-  {{component modalBodyComponent onSubmit=(action onSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
+{{#generic-modal type=modalType modelType="Recipe" isOpen=isModalOpen onHidden=(action "onModalClosed")}}
+  {{component modalBodyComponent onFormSubmit=(action modalSubmitAction) recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}
