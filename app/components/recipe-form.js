@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { inject } from '@ember/service';
 
 export default Component.extend({
+
     imageUploader: inject('image-uploader'),
 
     actions: {
@@ -17,7 +18,6 @@ export default Component.extend({
             event.preventDefault();
             this.onSubmit();
         },
-
     }
 
 });
