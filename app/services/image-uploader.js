@@ -7,7 +7,7 @@ export default Service.extend({
         return file.upload(ENV.APP.HOST + '/images').then(data => {
             return data.body.url;
         }).catch(() => {
-            return 'http://localhost:8000/images/default.jpeg';
+            return ENV.APP.HOST + '/images' + 'default.jpeg';
         });
     }
 
