@@ -1,32 +1,19 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { inject } from '@ember/service';
 
 export default Controller.extend({
 
+    modelType: 'ingredient',
+    modalHelper: inject('modal-helper'),
+
     modalBodyComponent: computed('modalType', function() {
-        switch (this.get('modalType')) {
-            case 'Create':
-            case 'Update':
-                return 'ingredient-form';
-            case 'Delete':
-                return 'ingredient-delete';
-            case 'Details':
-            default:
-                return 'ingredient-details';
-        }
+        return this.get('modalHelper').getModalBodyComponent(this.get('modalType'), this.get('modelType'));
     }),
 
     modalSubmitAction: computed('modalType', function() {
-        switch (this.get('modalType')) {
-            case 'Create':
-            case 'Update':
-                return 'saveIngredient';
-            case 'Delete':
-                return 'deleteIngredient';
-            case 'Details':
-            default:
-                return 'closeModal';
-        }
+        return this.get('modalHelper').getModalSubmitAction(this.get('modalType'), this.get('modelType'));
+
     }),
 
     actions: {

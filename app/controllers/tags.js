@@ -1,34 +1,20 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { inject } from '@ember/service';
 
 export default Controller.extend({
 
+    modelType: 'tag',
+    modalHelper: inject('modal-helper'),
+
     modalBodyComponent: computed('modalType', function() {
-        switch (this.get('modalType')) {
-            case 'Create':
-            case 'Update':
-                return 'tag-form';
-            case 'Delete':
-                return 'tag-delete';
-            case 'Details':
-            default:
-                return 'tag-details';
-        }
+        return this.get('modalHelper').getModalBodyComponent(this.get('modalType'), this.get('modelType'));
     }),
 
     modalSubmitAction: computed('modalType', function() {
-        switch (this.get('modalType')) {
-            case 'Create':
-            case 'Update':
-                return 'saveTag';
-            case 'Delete':
-                return 'deleteTag';
-            case 'Details':
-            default:
-                return 'closeModal';
-        }
-    }),
+        return this.get('modalHelper').getModalSubmitAction(this.get('modalType'), this.get('modelType'));
 
+    }),
 
     actions: {
         openModal(modalType, tag) {
