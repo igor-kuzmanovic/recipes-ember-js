@@ -75,7 +75,7 @@
 .date-input {
   height: 34px;
 
-  &:disabled {
+  &:read-only {
     background-color: inherit;
   }
 }

@@ -27,7 +27,13 @@ export default Component.extend({
 
             let date = this.get('date');
             if (date) {
-                filter.date = moment(date).format('YYYY-MM-DD');
+                if (date.start) {
+                    filter.dateFrom = moment(date.start).format('YYYY-MM-DD');
+                }
+
+                if (date.end) {
+                    filter.dateTo = moment(date.end).format('YYYY-MM-DD');
+                }
             }
 
             let categories = this.get('category');

@@ -1,23 +1,47 @@
 <form class="mb-5">
   <div class="form-row justify-content-center">
-    <div class="mr-1">
-      {{#power-datepicker selected=date onSelect=(action "onDateChange" value="date") as |dp|}}
-        {{#dp.trigger tabindex="-1"}}
-          {{input type="text" id="date" disabled=true value=(moment-format date "Do MMM YYYY" allow-empty=true) class="form-control date-input" placeholder="Select a date"}}
-        {{/dp.trigger}}
-        {{#dp.content class="filter-calendar"}}
-          {{dp.nav}}
-          {{dp.days}}
-        {{/dp.content}}
-      {{/power-datepicker}}
+    <div class="mr-1 col-3">
+      {{#basic-dropdown as |dropdown|}}
+        {{#dropdown.trigger}}
+          <input type="text"
+                 data-ebd-id="{{dropdown.uniqueId}}-trigger"
+                 class="form-control date-input"
+                 value="{{unless date "Please select a date range"}}{{if date.start 'from'}} {{if date.start (moment-format date.start 'YYYY-MM-DD')}} {{if date.end 'to'}} {{if date.end (moment-format date.end 'YYYY-MM-DD')}}"
+                 readonly>
+        {{/dropdown.trigger}}
+
+
+        {{#dropdown.content}}
+          {{#power-calendar-range class="filter-calendar"
+                            center=center
+                            onCenterChange=(action (mut center) value="date")
+                            selected=date
+                            onSelect=(action "onDateChange" value="date") as |calendar|}}
+            {{calendar.nav}}
+            {{calendar.days}}
+          {{/power-calendar-range}}
+        {{/dropdown.content}}
+      {{/basic-dropdown}}
     </div>
     <div class="col-3">
-      {{#power-select-multiple options=categories searchField="name" selected=category onchange=(action "onCategoryChange") dropdownClass="in-modal-dropdown" placeholder="Select a category" as |category|}}
+      {{#power-select-multiple
+          options=categories
+          searchField="name"
+          selected=category
+          onchange=(action "onCategoryChange")
+          dropdownClass="in-modal-dropdown"
+          placeholder="Select a category" as |category|}}
         {{category.name}}
       {{/power-select-multiple}}
     </div>
     <div class="col-3">
-      {{#power-select-multiple options=tags searchField="name" selected=tag onchange=(action "onTagChange") dropdownClass="in-modal-dropdown" placeholder="Select the tags" as |tag|}}
+      {{#power-select-multiple
+          options=tags
+          searchField="name"
+          selected=tag
+          onchange=(action "onTagChange")
+          dropdownClass="in-modal-dropdown"
+          placeholder="Select the tags" as |tag|}}
         {{tag.name}}
       {{/power-select-multiple}}
     </div>
