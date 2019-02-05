@@ -5,7 +5,7 @@ export default Service.extend({
     getModalProperties(modalType, modelType) {
         return {
             type: modalType,
-            modelType: modelType.charAt(0).toUpperCase() + modelType.substring(1),
+            modelType: this._capitalizeString(modelType),
             title: this.getModalTitle(modalType, modelType),
             bodyComponent: this.getModalBodyComponent(modalType, modelType),
             submitAction: this.getModalSubmitAction(modalType, modelType),
@@ -16,7 +16,7 @@ export default Service.extend({
     },
 
     getModalTitle(modalType, modelType) {
-        modelType = modelType.charAt(0).toUpperCase() + modelType.substring(1);
+        modelType = this._capitalizeString(modelType);
 
         switch (modalType) {
             case 'Create':
@@ -48,7 +48,7 @@ export default Service.extend({
     },
 
     getModalSubmitAction(modalType, modelType) {
-        modelType = modelType.charAt(0).toUpperCase() + modelType.substring(1);
+        modelType = this._capitalizeString(modelType);
 
         switch (modalType) {
             case 'Create':
@@ -60,6 +60,10 @@ export default Service.extend({
             default:
                 return 'closeModal';
         }
+    },
+
+    _capitalizeString(text) {
+        return text.charAt(0).toUpperCase() + text.substring(1);
     }
 
 });
