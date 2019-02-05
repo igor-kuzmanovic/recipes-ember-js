@@ -53,8 +53,11 @@ export default Controller.extend({
         filterResults(filter = null) {
             let query = {
                 include: 'category,ingredients,tags',
-                filter: filter
             };
+
+            if (filter) {
+                query.filter = filter;
+            }
 
             this.get('store').query('recipe', query).then(data =>{
                 this.set('model.recipes', data);
