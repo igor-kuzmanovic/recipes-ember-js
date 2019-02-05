@@ -4,49 +4,6 @@ import moment from 'moment';
 
 export default Component.extend({
 
-    filter: computed('date', 'category', 'tag', function() {
-        let filter = {};
-
-        let date = this.get('date');
-        if (date) {
-            if (date) {
-                filter.date = moment(date).format('YYYY-MM-DD');
-            }
-        }
-
-        let categories = this.get('category');
-        if (categories) {
-            if (categories && categories.length > 0) {
-                filter.category = '';
-
-                categories.forEach(function(category, key, array) {
-                    filter.category  += category.id;
-
-                    if (!Object.is(array.length - 1, key)) {
-                        filter.category  += ',';
-                    }
-                });
-            }
-        }
-
-        let tags = this.get('tag');
-        if (tags) {
-            if (tags && tags.length > 0) {
-                filter.tag = '';
-
-                tags.forEach(function(tag, key, array) {
-                    filter.tag += tag.id;
-
-                    if (!Object.is(array.length - 1, key)) {
-                        filter.tag += ',';
-                    }
-                });
-            }
-        }
-
-        return filter;
-    }),
-
     actions: {
         onDateChange(date) {
             this.set('date', date);
@@ -71,39 +28,33 @@ export default Component.extend({
 
             let date = this.get('date');
             if (date) {
-                if (date) {
-                    filter.date = moment(date).format('YYYY-MM-DD');
-                }
+                filter.date = moment(date).format('YYYY-MM-DD');
             }
 
             let categories = this.get('category');
-            if (categories) {
-                if (categories && categories.length > 0) {
-                    filter.category = '';
+            if (categories && categories.length > 0) {
+                filter.category = '';
 
-                    categories.forEach(function(category, key, array) {
-                        filter.category  += category.id;
+                categories.forEach(function(category, key, array) {
+                    filter.category  += category.id;
 
-                        if (!Object.is(array.length - 1, key)) {
-                            filter.category  += ',';
-                        }
-                    });
-                }
+                    if (!Object.is(array.length - 1, key)) {
+                        filter.category  += ',';
+                    }
+                });
             }
 
             let tags = this.get('tag');
-            if (tags) {
-                if (tags && tags.length > 0) {
-                    filter.tag = '';
+            if (tags && tags.length > 0) {
+                filter.tag = '';
 
-                    tags.forEach(function(tag, key, array) {
-                        filter.tag += tag.id;
+                tags.forEach(function(tag, key, array) {
+                    filter.tag += tag.id;
 
-                        if (!Object.is(array.length - 1, key)) {
-                            filter.tag += ',';
-                        }
-                    });
-                }
+                    if (!Object.is(array.length - 1, key)) {
+                        filter.tag += ',';
+                    }
+                });
             }
 
             this.get('onFilterResults')(filter);
