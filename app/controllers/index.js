@@ -13,7 +13,6 @@ export default Controller.extend({
 
     modalSubmitAction: computed('modalType', function() {
         return this.get('modalHelper').getModalSubmitAction(this.get('modalType'), this.get('modelType'));
-
     }),
 
     actions: {
