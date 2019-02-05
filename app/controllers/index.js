@@ -50,13 +50,11 @@ export default Controller.extend({
             this.send('closeModal');
         },
 
-        filterResults(filter) {
-            let query = {};
-            query.include = 'category,ingredients,tags';
-
-            if (filter) {
-                query.filter = filter;
-            }
+        filterResults(filter = null) {
+            let query = {
+                include: 'category,ingredients,tags',
+                filter: filter
+            };
 
             this.get('store').query('recipe', query).then(data =>{
                 this.set('model.recipes', data);
