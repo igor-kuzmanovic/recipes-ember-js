@@ -15,16 +15,16 @@ export default Mixin.create({
         return {
             type: this.get('modalType'),
             modelType: this.get('modelTypeCapitalized'),
-            title: this.getModalTitle(),
-            bodyComponent: this.getModalBodyComponent(),
-            submitAction: this.getModalSubmitAction(),
+            title: this._getModalTitle(),
+            bodyComponent: this._getModalBodyComponent(),
+            submitAction: this._getModalSubmitAction(),
             cancelAction: 'closeModal',
             onCloseAction: 'closeModal',
             onClosedAction: 'onModalClosed'
         };
     }),
 
-    getModalTitle(modalType, modelType) {
+    _getModalTitle(modalType, modelType) {
         modelType = this.get('modelTypeCapitalized');
 
         switch (this.get('modalType')) {
@@ -41,7 +41,7 @@ export default Mixin.create({
         }
     },
 
-    getModalBodyComponent() {
+    _getModalBodyComponent() {
         let modelType = this.get('modelType');
 
         switch (this.get('modalType')) {
@@ -56,7 +56,7 @@ export default Mixin.create({
         }
     },
 
-    getModalSubmitAction() {
+    _getModalSubmitAction() {
         switch (this.get('modalType')) {
             case 'Create':
             case 'Update':

@@ -19,7 +19,7 @@ export default Controller.extend(BaseController, {
                 query.filter = filter;
             }
 
-            this.get('store').query('recipe', query).then(data =>{
+            this.get('store').query('recipe', query).then(data => {
                 this.set('model.recipes', data);
             });
         }
