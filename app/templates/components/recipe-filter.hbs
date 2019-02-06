@@ -6,7 +6,7 @@
           <input type="text"
                  data-ebd-id="{{dropdown.uniqueId}}-trigger"
                  class="form-control date-input"
-                 value="{{unless date "Please select a date range"}}{{if date.start 'from'}} {{if date.start (moment-format date.start 'YYYY-MM-DD')}} {{if date.end 'to'}} {{if date.end (moment-format date.end 'YYYY-MM-DD')}}"
+                 value="{{unless date "Please select a date range"}}{{if date.start "from"}} {{if date.start (moment-format date.start "YYYY-MM-DD")}} {{if date.end "to"}} {{if date.end (moment-format date.end "YYYY-MM-DD")}}"
                  readonly>
         {{/dropdown.trigger}}
         {{#dropdown.content}}
