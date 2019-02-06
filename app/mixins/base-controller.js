@@ -12,12 +12,9 @@ export default Mixin.create({
     }),
 
     modal: computed('modalType', function() {
-        let modalType = this.get('modalType');
-        let modelType = this.get('modelTypeCapitalized');
-
         return {
-            type: modalType,
-            modelType: modelType,
+            type: this.get('modalType'),
+            modelType: this.get('modelTypeCapitalized'),
             title: this.getModalTitle(),
             bodyComponent: this.getModalBodyComponent(),
             submitAction: this.getModalSubmitAction(),
@@ -26,7 +23,6 @@ export default Mixin.create({
             onClosedAction: 'onModalClosed'
         };
     }),
-
 
     getModalTitle(modalType, modelType) {
         modelType = this.get('modelTypeCapitalized');
