@@ -1,49 +1,15 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-import { inject } from '@ember/service';
+import BaseController from '../mixins/base-controller';
 
-export default Controller.extend({
+export default Controller.extend(BaseController, {
 
-    modalHelper: inject(),
-    modelType: 'recipe',
+    init() {
+        this._super(...arguments);
 
-    modal: computed('modalType', function() {
-        return this.get('modalHelper').getModalProperties(this.get('modalType'), this.get('modelType'));
-    }),
+        this.set('modelType', 'recipe');
+    },
 
     actions: {
-        openModal(modalType, recipe) {
-            this.set('modalType', modalType);
-
-            if (modalType === 'Create') {
-                recipe = this.store.createRecord('recipe');
-            }
-
-            this.set('selectedRecipe', recipe);
-            this.set(`modal.isOpen`, true);
-        },
-
-        closeModal() {
-            this.set(`modal.isOpen`, false);
-        },
-
-        onModalClosed() {
-            this.get('selectedRecipe').rollbackAttributes();
-            this.set('selectedRecipe', null);
-        },
-
-        saveRecipe() {
-            this.get('selectedRecipe').save();
-
-            this.send('closeModal');
-        },
-
-        deleteRecipe() {
-            this.get('selectedRecipe').destroyRecord();
-
-            this.send('closeModal');
-        },
-
         filterResults(filter = null) {
             let query = {
                 include: 'category,ingredients,tags',

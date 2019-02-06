@@ -21,7 +21,7 @@
             {{#bs-button type="info" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}
           </div>
           <div class="card-footer">
-            <h6 class="card-text text-muted text-center">{{recipe-date-format recipe.date}}</h6>
+            <h6 class="card-text text-muted text-center">{{moment-format recipe.date "Do MMMM, YYYY"}}</h6>
           </div>
         </div>
       {{/unless}}
@@ -38,5 +38,5 @@
   {{component modal.bodyComponent
               onFormSubmit=(action modal.submitAction)
               onFormCancel=(action modal.cancelAction)
-              recipe=selectedRecipe ingredients=model.ingredients categories=model.categories tags=model.tags}}
+              recipe=selected ingredients=model.ingredients categories=model.categories tags=model.tags}}
 {{/generic-modal}}
