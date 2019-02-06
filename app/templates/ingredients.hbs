@@ -34,7 +34,9 @@
 {{#generic-modal type=modal.type
                  modelType=modal.modelType
                  isOpen=modal.isOpen
-                 title=modal.title}}
+                 title=modal.title
+                 onClose=(action modal.onCloseAction)
+                 onClosed=(action modal.onClosedAction)}}
   {{component modal.bodyComponent
               onFormSubmit=(action modal.submitAction)
               onFormCancel=(action modal.cancelAction)
