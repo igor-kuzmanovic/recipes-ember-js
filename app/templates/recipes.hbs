@@ -20,7 +20,7 @@
             <td class="align-middle">{{recipe.title}}</td>
             <td class="align-middle">{{recipe.description}}</td>
             <td class="align-middle">{{recipe.category.name}}</td>
-            <td class="align-middle">{{recipe-date-format recipe.date}}</td>
+            <td class="align-middle">{{moment-format recipe.date "DD-MM-YYYY"}}</td>
             <td class="align-middle">
               <div class="btn-group" role="group">
                 {{#bs-button type="info" outline="true" onClick=(action "openModal" "Details" recipe)}}Details{{/bs-button}}

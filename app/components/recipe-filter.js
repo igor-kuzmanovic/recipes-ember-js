@@ -1,7 +1,28 @@
 import Component from '@ember/component';
 import moment from 'moment';
+import { computed } from '@ember/object';
 
 export default Component.extend({
+
+    dateDisplay: computed('date.{start,end}', function() {
+        let date = this.get('date');
+
+        if (date) {
+            let displayValue = '';
+
+            if (date.start) {
+                displayValue += moment(date.start).format('Do MMM YYYY');
+            }
+
+            if (date.end) {
+                displayValue += ` - ${moment(date.end).format('Do MMM YYYY')}`;
+            }
+
+            return displayValue;
+        }
+
+        return "Please select a date range";
+    }),
 
     actions: {
         onDateChange(date) {
