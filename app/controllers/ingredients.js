@@ -4,8 +4,8 @@ import { inject } from '@ember/service';
 
 export default Controller.extend({
 
+    modalHelper: inject(),
     modelType: 'ingredient',
-    modalHelper: inject('modal-helper'),
 
     modal: computed('modalType', function() {
         return this.get('modalHelper').getModalProperties(this.get('modalType'), this.get('modelType'));
@@ -33,19 +33,13 @@ export default Controller.extend({
         },
 
         saveIngredient() {
-            let ingredient = this.get('selectedIngredient');
-            if (ingredient) {
-                ingredient.save();
-            }
+            this.get('selectedIngredient').save();
 
             this.send('closeModal');
         },
 
         deleteIngredient() {
-            let ingredient = this.get('selectedIngredient');
-            if (ingredient) {
-                ingredient.destroyRecord();
-            }
+            this.get('selectedIngredient').destroyRecord();
 
             this.send('closeModal');
         }

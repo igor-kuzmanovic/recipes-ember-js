@@ -4,8 +4,8 @@ import { inject } from '@ember/service';
 
 export default Controller.extend({
 
+    modalHelper: inject(),
     modelType: 'tag',
-    modalHelper: inject('modal-helper'),
 
     modal: computed('modalType', function() {
         return this.get('modalHelper').getModalProperties(this.get('modalType'), this.get('modelType'));
@@ -33,19 +33,13 @@ export default Controller.extend({
         },
 
         saveTag() {
-            let tag = this.get('selectedTag');
-            if (tag) {
-                tag.save();
-            }
+            this.get('selectedTag').save();
 
             this.send('closeModal');
         },
 
         deleteTag() {
-            let tag = this.get('selectedTag');
-            if (tag) {
-                tag.destroyRecord();
-            }
+            this.get('selectedTag').destroyRecord();
 
             this.send('closeModal');
         }
