@@ -67,12 +67,12 @@
       {{/file-upload}}
     </div>
   </div>
-  {{#if recipe.imageUrl}}
+  {{#if recipe.image}}
     <div class="form-group row justify-content-center">
-      <img src={{recipe.imageUrl}} class="img-recipe img-thumbnail" alt="Recipe Image">
+      <img src={{recipe.image}} class="img-recipe img-thumbnail" alt="Recipe Image">
     </div>
   {{/if}}
-  {{input type="hidden" id="imageUrl" value=recipe.imageUrl}}
+  {{input type="hidden" id="imageUrl" value=recipe.image}}
   <hr>
   <div class="form-group row justify-content-between modal-btn-form-group">
     {{#bs-button type="danger" onClick=(action onFormCancel)}}Cancel{{/bs-button}}

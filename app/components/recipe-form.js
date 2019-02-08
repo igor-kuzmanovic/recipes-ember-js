@@ -8,7 +8,7 @@ export default Component.extend({
     actions: {
         onFileAdd(file) {
             this.get('imageUploader').uploadImage(file).then(url => {
-                this.set('recipe.imageUrl', url);
+                this.set('recipe.image', url);
             })
         }
     }

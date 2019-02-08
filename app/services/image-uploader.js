@@ -3,13 +3,13 @@ import ENV from 'recipes-ember/config/environment'
 
 export default Service.extend({
 
-    imageUrl: ENV.APP.HOST + '/images',
+    imagesUrl: ENV.APP.HOST + '/images',
 
     uploadImage(file) {
-        return file.upload(this.get('imageUrl')).then(data => {
+        return file.upload(this.get('imagesUrl')).then(data => {
             return data.body.url;
         }).catch(() => {
-            return this.get('imageUrl') + 'default.jpeg';
+            return this.get('imagesUrl') + 'default.jpeg';
         });
     }
 
